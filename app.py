@@ -106,17 +106,12 @@ def handle_user_question(user_question):
 
 def main():
     load_dotenv()
-    st.set_page_config(page_title="BenchSci Onboarding sidekick", page_icon=":superhero:")
+    st.set_page_config(page_title="benchsidekick", page_icon=":superhero:")
     st.write(css, unsafe_allow_html=True)
 
     # Add a wrapper div for the fixed header and input field
     st.write('<div class="fixed-header">', unsafe_allow_html=True)
-    st.header("BenchSci Onboarding sidekick! :superhero:")
-    user_question = st.text_input("Ask a question about your documents: ")
-    st.write('</div>', unsafe_allow_html=True)
-
-    if user_question:
-        handle_user_question(user_question)
+    st.header("benchsidekick! :superhero:")
 
     if "conversation" not in st.session_state:
         st.session_state.conversation = None
@@ -124,22 +119,28 @@ def main():
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = None
 
-    with st.sidebar:
-        st.subheader("Connect to Drive!")
-        pdf_docs = st.text_input("Enter drive link: ")
-        if st.button("Upload"):
-            with st.spinner("Uploading your documents..."):
-                #get pdf text
-                raw_text = get_pdf_text2(pdf_docs)
+    st.text("connect to Drive!")
+    pdf_docs = st.text_input("enter drive link: ")
 
-                #get text chunks 
-                text_chunks = get_text_checks(raw_text)
+    if st.button("upload"):
+        with st.spinner("Uploading your documents..."):
+            #get pdf text
+            raw_text = get_pdf_text2(pdf_docs)
+
+            #get text chunks 
+            text_chunks = get_text_checks(raw_text)
             
-                #create vector store 
-                vector_store = get_vector_store(text_chunks)
+            #create vector store 
+            vector_store = get_vector_store(text_chunks)
 
-                #create conversation chain 
-                st.session_state.conversation = get_conversation_chain(vector_store)
+            #create conversation chain 
+            st.session_state.conversation = get_conversation_chain(vector_store)
+
+    st.write('<hr/>', unsafe_allow_html=True)
+
+    user_question = st.text_input("ask a question about your documents: ")
+    if user_question:
+        handle_user_question(user_question)
 
 if __name__=="__main__":
     main()

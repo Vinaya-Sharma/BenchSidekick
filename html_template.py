@@ -79,7 +79,7 @@ css = '''
 bot_template = '''
 <div class="flex-container" >
     <div class="avatar">
-        <img src="https://i.ibb.co/cN0nmSj/Screenshot-2023-05-28-at-02-37-21.png" style="max-height: 50px; max-width: 50px; border-radius: 50%; object-fit: cover;">
+        <img src="https://www.clipartmax.com/png/middle/89-896202_medium-image-lowercase-b.png" style="max-height: 50px; max-width: 50px; border-radius: 50%; object-fit: contain;"/>
     </div>
 <div class="chat-message bot">
     <div class="message">{{MSG}}</div>
