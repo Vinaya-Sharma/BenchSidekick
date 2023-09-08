@@ -1,4 +1,4 @@
-# BenchSci_Sidekick
+# BenchSidekick
 An AI-powered framework that enables seamless interaction with your entire Google Drive. 
 BenchSidekick is powered by Streamlit and Langchain. 
 
